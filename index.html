@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e8f1eb">
+<meta name="description" content="Tàng Gay Các - Thư viện truyện tự sáng tác.">
+<title>Tàng Gay Các | Thư viện truyện</title>
+
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f0f4f0;
+  --card: #fbfdfb;
+  --text: #35463e;
+  --muted: #7d8b82;
+  --accent: #579b87;
+  --accent-dark: #397563;
+  --soft: #dfede5;
+  --border: #d9e4dc;
+  --shadow: 0 8px 28px rgba(65, 105, 83, .07);
+}
+
+body.dark {
+  color-scheme: dark;
+  --bg: #202a26;
+  --card: #2a3530;
+  --text: #e8f0e9;
+  --muted: #a7b7ac;
+  --accent: #8bc8b0;
+  --accent-dark: #b0dfca;
+  --soft: #35473d;
+  --border: #435349;
+  --shadow: 0 8px 28px rgba(0, 0, 0, .15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+  transition: background .25s, color .25s;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+a {
+  color: var(--accent-dark);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.nav {
+  max-width: 1120px;
+  min-height: 72px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--accent-dark);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform .15s, background .15s;
+}
+
+.btn:active {
+  transform: scale(.97);
+}
+
+.primary {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: 1px solid var(--accent) !important;
+}
+
+body.dark .primary {
+  color: #1f3028 !important;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 65px 20px 55px;
+  text-align: center;
+  background:
+    radial-gradient(
+      ellipse at 10% 25%,
+      rgba(99, 177, 151, .44),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 88% 15%,
+      rgba(194, 220, 194, .8),
+      transparent 43%
+    ),
+    radial-gradient(
+      ellipse at 60% 100%,
+      rgba(166, 178, 170, .40),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #e1eee6,
+      #f1f4ef,
+      #d7e9df
+    );
+}
+
+body.dark .hero {
+  background:
+    radial-gradient(
+      ellipse at 10% 25%,
+      rgba(72, 133, 110, .5),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 90% 15%,
+      rgba(99, 125, 101, .4),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #263b32, #28312d, #34453a);
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 760px;
+  margin: auto;
+}
+
+.eyebrow {
+  color: var(--accent-dark);
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  margin: 12px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 7vw, 60px);
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  color: var(--muted);
+  margin: 8px auto;
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+  max-width: 550px;
+  margin: 26px auto 0;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+}
+
+input, select, textarea {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+}
+
+.search input,
+#admin input,
+#admin select,
+#admin textarea {
+  width: 100%;
+}
+
+main {
+  max-width: 1120px;
+  min-height: 45vh;
+  margin: auto;
+  padding: 32px 20px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+h2, h3 {
+  line-height: 1.4;
+}
+
+.section-heading h2,
+.section-title {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 27px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 26px;
+}
+
+.filter {
+  padding: 7px 13px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--card);
+  color: var(--text);
+}
+
+.filter.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+body.dark .filter.active {
+  color: #1f3028;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.book {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform .2s;
+}
+
+.book:hover {
+  transform: translateY(-3px);
+}
+
+.cover {
+  position: relative;
+  min-height: 205px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  text-align: center;
+  color: white;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.5;
+  background:
+    radial-gradient(ellipse at 20% 20%,
+      rgba(218, 240, 220, .9), transparent 55%),
+    linear-gradient(145deg, #79b9a2, #507a69);
+}
+
+.cover.blue {
+  background:
+    radial-gradient(ellipse at 15% 20%,
+      rgba(213, 236, 222, .9), transparent 50%),
+    linear-gradient(145deg, #8ab9a6, #668a7b);
+}
+
+.cover.gray {
+  background:
+    radial-gradient(ellipse at 80% 20%,
+      rgba(227, 237, 226, .8), transparent 48%),
+    linear-gradient(145deg, #a6b7ad, #687d73);
+}
+
+.cover.rose {
+  background:
+    radial-gradient(ellipse at 20% 20%,
+      rgba(211, 236, 215, .9), transparent 50%),
+    linear-gradient(145deg, #9fc6ae, #698f7c);
+}
+
+.cover-label {
+  display: block;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.book-info {
+  padding: 16px;
+}
+
+.book-info h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.tag {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 12px;
+}
+
+.book-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.book-actions .primary {
+  flex: 1;
+}
+
+.heart {
+  min-width: 42px;
+  font-size: 18px;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: 35px 10px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.back {
+  margin-bottom: 22px;
+}
+
+.detail-cover {
+  min-height: 190px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+}
+
+.chapter-list {
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list button {
+  width: 100%;
+  padding: 14px 8px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.chapter-list button:hover {
+  background: var(--soft);
+}
+
+.reader-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.reader {
+  max-width: 760px;
+  margin: auto;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.reader-content {
+  white-space: pre-wrap;
+}
+
+.reader-controls {
+  max-width: 760px;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.reader-controls button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.form-card {
+  max-width: 700px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.form-card label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: bold;
+}
+
+.form-card textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-note {
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--soft);
+  color: var(--text);
+  font-size: 13px;
+}
+
+footer {
+  margin-top: 30px;
+  padding: 35px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+}
+
+.footer-logo {
+  color: var(--accent-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+footer p {
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    padding: 11px 13px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .nav-actions {
+    gap: 5px;
+  }
+
+  .nav-actions .btn {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 45px 16px;
+  }
+
+  main {
+    padding: 25px 13px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .cover {
+    min-height: 155px;
+    padding: 12px;
+    font-size: 20px;
+  }
+
+  .book-info {
+    padding: 11px;
+  }
+
+  .book-info h3 {
+    font-size: 15px;
+  }
+
+  .book-actions {
+    gap: 5px;
+  }
+
+  .book-actions .btn {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .reader {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 370px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cover {
+    min-height: 200px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo" onclick="showPage('home')">
+      ❧ Tàng Gay Các
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn" onclick="toggleTheme()" aria-label="Đổi giao diện">
+        ☼ / ☾
+      </button>
+      <button class="btn" onclick="showPage('favorites')">
+        ♡ <span class="favorite-count">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">A LITTLE WORLD OF STORIES</div>
+
+    <h1>Tàng Gay Các</h1>
+
+    <p>
+      Nơi cất giữ những câu chuyện thuộc về riêng bạn.
+    </p>
+
+    <div class="search">
+      <input
+        id="search"
+        type="search"
+        placeholder="Tìm tên truyện, tác giả, thể loại..."
+        aria-label="Tìm truyện"
+      >
+      <button class="btn primary" onclick="renderBooks()">
+        Tìm kiếm
+      </button>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- TRANG CHỦ -->
+
+  <section id="home" class="page active">
+
+    <div class="section-heading">
+      <h2>Thư viện truyện</h2>
+
+      <button class="btn" onclick="showPage('admin')">
+        ＋ Viết truyện
+      </button>
+    </div>
+
+    <div class="filters" id="filters"></div>
+
+    <div class="grid" id="books"></div>
+
+    <p class="muted">
+      Những câu chuyện đầu tiên trong thư viện.
+      Hãy thêm tác phẩm của riêng bạn để bắt đầu.
+    </p>
+
+  </section>
+
+  <!-- CHI TIẾT TRUYỆN -->
+
+  <section id="detail" class="page">
+
+    <button class="btn back" onclick="showPage('home')">
+      ← Quay lại thư viện
+    </button>
+
+    <div id="detail-content"></div>
+
+  </section>
+
+  <!-- TRANG ĐỌC -->
+
+  <section id="reading" class="page">
+
+    <button class="btn back" onclick="backToDetail()">
+      ← Quay lại truyện
+    </button>
+
+    <div id="reading-content"></div>
+
+  </section>
+
+  <!-- YÊU THÍCH -->
+
+  <section id="favorites" class="page">
+
+    <button class="btn back" onclick="showPage('home')">
+      ← Quay lại thư viện
+    </button>
+
+    <div class="section-heading">
+      <h2>♡ Truyện yêu thích</h2>
+    </div>
+
+    <div class="grid" id="favorite-books"></div>
+
+  </section>
+
+  <!-- THÊM TRUYỆN -->
+
+  <section id="admin" class="page">
+
+    <button class="btn back" onclick="showPage('home')">
+      ← Quay lại thư viện
+    </button>
+
+    <h2 class="section-title">Viết truyện mới</h2>
+
+    <p class="muted">
+      Tạo bộ truyện đầu tiên của bạn tại Tàng Gay Các.
+    </p>
+
+    <div class="form-card">
+
+      <div class="form-note">
+        Bản hiện tại lưu dữ liệu trong trình duyệt trên
+        thiết bị của bạn. Dữ liệu chưa đồng bộ lên mạng.
+      </div>
+
+      <form id="book-form">
+
+        <label for="title">Tên truyện *</label>
+        <input id="title" name="title" required maxlength="150">
+
+        <label for="author">Bút danh *</label>
+        <input id="author" name="author" required maxlength="100">
+
+        <label for="genre">Thể loại *</label>
+        <select id="genre" name="genre">
+          <option>Đam mỹ</option>
+          <option>Linh dị</option>
+          <option>Huyền huyễn</option>
+          <option>Hiện đại</option>
+          <option>Cổ trang</option>
+          <option>Trinh thám</option>
+          <option>Kinh dị</option>
+          <option>Khác</option>
+        </select>
+
+        <label for="description">Giới thiệu truyện *</label>
+        <textarea
+          id="description"
+          name="description"
+          required
+          maxlength="3000"
+        ></textarea>
+
+        <label for="chapter">Tên chương đầu tiên *</label>
+        <input
+          id="chapter"
+          name="chapter"
+          required
+          maxlength="200"
+        >
+
+        <label for="content">Nội dung chương đầu tiên *</label>
+        <textarea
+          id="content"
+          name="content"
+          required
+          maxlength="200000"
+        ></textarea>
+
+        <p>
+          <button class="btn primary" type="submit">
+            Lưu truyện
+          </button>
+        </p>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">❧ Tàng Gay Các ❧</div>
+
+  <p>
+    Nơi cất giữ những câu chuyện thuộc về riêng bạn.
+  </p>
+
+  <button class="btn" onclick="showPage('home')">
+    Trang chủ
+  </button>
+
+  <button class="btn" onclick="showPage('admin')">
+    ＋ Thêm truyện
+  </button>
+</footer>
+
+<script>
+"use strict";
+
+/* ==================================
+   DỮ LIỆU TRUYỆN MẪU
+================================== */
+
+const sampleBooks = [
+  {
+    id: "sample-1",
+    title: "Dưới Trăng Vong Xuyên",
+    author: "Tàng Gay Các",
+    genre: "Linh dị",
+    color: "",
+    description:
+      "Một câu chuyện về nhân duyên, bí mật và những linh hồn chưa thể rời khỏi nhân gian.",
+    chapters: [
+      {
+        title: "Chương 1: Tiếng gọi bên sông",
+        content:
+`Đêm ấy, tiếng chuông vang lên từ phía bờ sông.
+
+Không ai trong làng dám bước ra ngoài sau canh ba. Người ta nói rằng, nếu nghe thấy ai gọi tên mình từ bên kia sông, tuyệt đối không được trả lời.
+
+Nhưng đêm nay, có người đã gọi tên tôi.`
+      }
+    ]
+  },
+  {
+    id: "sample-2",
+    title: "Ngày Gió Qua Thành Phố",
+    author: "Tàng Gay Các",
+    genre: "Hiện đại",
+    color: "blue",
+    description:
+      "Một cuộc gặp gỡ tình cờ, những lá thư chưa gửi và một thành phố đầy kỷ niệm.",
+    chapters: [
+      {
+        title: "Chương 1: Ngày đầu gặp gỡ",
+        content:
+`Thành phố hôm ấy có gió.
+
+Tôi gặp người ấy ở một góc phố nhỏ, khi cơn mưa vừa kịp dừng và những giọt nước còn đọng trên mái hiên.`
+      }
+    ]
+  },
+  {
+    id: "sample-3",
+    title: "Mộng Hoa Ký",
+    author: "Tàng Gay Các",
+    genre: "Huyền huyễn",
+    color: "rose",
+    description:
+      "Một giấc mộng kéo dài nghìn năm, một lời hứa chưa từng được quên.",
+    chapters: [
+      {
+        title: "Chương 1: Giấc mộng đầu tiên",
+        content:
+`Trong giấc mộng ấy, hoa nở khắp trời.
+
+Người đứng dưới gốc cây, áo trắng như tuyết, ngoảnh đầu nhìn tôi rồi mỉm cười.`
+      }
+    ]
+  }
+];
+
+/* ==================================
+   LƯU TRỮ TRÊN THIẾT BỊ
+================================== */
+
+function loadJSON(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+let books = loadJSON("tgc-books-v1", []);
+let favorites = loadJSON("tgc-favorites-v1", []);
+let category = "Tất cả";
+let currentBook = null;
+let currentChapter = 0;
+
+if (!Array.isArray(books)) books = [];
+if (!Array.isArray(favorites)) favorites = [];
+
+function allBooks() {
+  return [...sampleBooks, ...books];
+}
+
+function saveData() {
+  try {
+    localStorage.setItem("tgc-books-v1", JSON.stringify(books));
+    localStorage.setItem("tgc-favorites-v1", JSON.stringify(favorites));
+    return true;
+  } catch (error) {
+    alert("Không thể lưu dữ liệu. Bộ nhớ trình duyệt có thể đã đầy.");
+    return false;
+  }
+}
+
+/* ==================================
+   HÀM HỖ TRỢ
+================================== */
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function (char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+function getBook(id) {
+  return allBooks().find(book => String(book.id) === String(id));
+}
+
+function showPage(id) {
+  const page = document.getElementById(id);
+  if (!page) return;
+
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  page.classList.add("active");
+
+  document.getElementById("hero").style.display =
+    id === "home" ? "block" : "none";
+
+  if (id === "favorites") renderFavorites();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ==================================
+   CHỦ ĐỀ SÁNG / TỐI
+================================== */
+
+function toggleTheme() {
+  const dark = document.body.classList.toggle("dark");
+
+  try {
+    localStorage.setItem("tgc-dark", dark ? "1" : "0");
+  } catch (error) {}
+}
+
+try {
+  if (localStorage.getItem("tgc-dark") === "1") {
+    document.body.classList.add("dark");
+  }
+} catch (error) {}
+
+/* ==================================
+   BỘ LỌC THỂ LOẠI
+================================== */
+
+function renderFilters() {
+  const categories = [
+    "Tất cả",
+    ...new Set(allBooks().map(book => book.genre))
+  ];
+
+  document.getElementById("filters").innerHTML =
+    categories.map(item => `
+      <button
+        class="filter ${item === category ? "active" : ""}"
+        onclick="setCategory('${escapeHTML(item)}')"
+      >${escapeHTML(item)}</button>
+    `).join("");
+}
+
+function setCategory(value) {
+  category = value;
+  renderBooks();
+}
+
+/* ==================================
+   THẺ TRUYỆN
+================================== */
+
+function bookCard(book) {
+  const isFavorite = favorites.includes(book.id);
+  const color = ["blue", "gray", "rose"].includes(book.color)
+    ? book.color
+    : "";
+
+  return `
+    <article class="book">
+
+      <div class="cover ${color}">
+        <div>
+          ${escapeHTML(book.title)}
+          <span class="cover-label">TÀNG GAY CÁC</span>
+        </div>
+      </div>
+
+      <div class="book-info">
+
+        <h3>${escapeHTML(book.title)}</h3>
+
+        <div class="muted">
+          ${escapeHTML(book.author)}
+        </div>
+
+        <div class="tags">
+          <span class="tag">${escapeHTML(book.genre)}</span>
+          <span class="tag">
+            ${book.chapters.length} chương
+          </span>
+        </div>
+
+        <div class="book-actions">
+
+          <button
+            class="btn primary"
+            onclick="openBook('${escapeHTML(book.id)}')"
+          >Đọc truyện</button>
+
+          <button
+            class="btn heart"
+            onclick="toggleFavorite('${escapeHTML(book.id)}')"
+            aria-label="Đánh dấu yêu thích"
+          >${isFavorite ? "♥" : "♡"}</button>
+
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+/* ==================================
+   TÌM KIẾM TRUYỆN
+================================== */
+
+function renderBooks() {
+  renderFilters();
+
+  const query = document
+    .getElementById("search")
+    .value
+    .trim()
+    .toLocaleLowerCase("vi");
+
+  const filtered = allBooks().filter(book => {
+    const matchesCategory =
+      category === "Tất cả" || book.genre === category;
+
+    const text = [
+      book.title,
+      book.author,
+      book.genre,
+      book.description
+    ].join(" ").toLocaleLowerCase("vi");
+
+    return matchesCategory && text.includes(query);
+  });
+
+  document.getElementById("books").innerHTML =
+    filtered.length
+      ? filtered.map(bookCard).join("")
+      : '<p class="empty">Chưa tìm thấy truyện phù hợp.</p>';
+
+  updateFavoriteCount();
+}
+
+document.getElementById("search").addEventListener("input", renderBooks);
+
+/* ==================================
+   YÊU THÍCH
+================================== */
+
+function toggleFavorite(id) {
+  const book = getBook(id);
+  if (!book) return;
+
+  if (favorites.includes(book.id)) {
+    favorites = favorites.filter(item => item !== book.id);
+  } else {
+    favorites.push(book.id);
+  }
+
+  saveData();
+  renderBooks();
+  updateFavoriteCount();
+}
+
+function updateFavoriteCount() {
+  document.querySelectorAll(".favorite-count").forEach(element => {
+    element.textContent = favorites.length;
+  });
+}
+
+function renderFavorites() {
+  const favoriteBooks = allBooks().filter(book =>
+    favorites.includes(book.id)
+  );
+
+  document.getElementById("favorite-books").innerHTML =
+    favoriteBooks.length
+      ? favoriteBooks.map(bookCard).join("")
+      : '<p class="empty">Bạn chưa lưu truyện yêu thích nào.</p>';
+}
+
+/* ==================================
+   CHI TIẾT TRUYỆN
+================================== */
+
+function openBook(id) {
+  currentBook = getBook(id);
+  if (!currentBook) return;
+
+  const chapters = currentBook.chapters || [];
+
+  document.getElementById("detail-content").innerHTML = `
+    <div class="cover detail-cover">
+      <div>
+        ${escapeHTML(currentBook.title)}
+        <span class="cover-label">TÀNG GAY CÁC</span>
+      </div>
+    </div>
+
+    <h1 class="section-title">
+      ${escapeHTML(currentBook.title)}
+    </h1>
+
+    <p class="muted">
+      Tác giả: ${escapeHTML(currentBook.author)}
+      · Thể loại: ${escapeHTML(currentBook.genre)}
+    </p>
+
+    <p>${escapeHTML(currentBook.description)}</p>
+
+    <h2>Danh sách chương (${chapters.length})</h2>
+
+    <ol class="chapter-list">
+      ${chapters.map((chapter, index) => `
+        <li>
+          <button onclick="readChapter(${index})">
+            ${escapeHTML(chapter.title)}
+          </button>
+        </li>
+      `).join("")}
+    </ol>
+
+    ${chapters.length === 0
+      ? '<p class="empty">Truyện chưa có chương nào.</p>'
+      : ""}
+  `;
+
+  showPage("detail");
+}
+
+function backToDetail() {
+  if (currentBook) openBook(currentBook.id);
+  else showPage("home");
+}
+
+/* ==================================
+   ĐỌC TRUYỆN
+================================== */
+
+function readChapter(index) {
+  if (!currentBook) return;
+
+  const chapters = currentBook.chapters || [];
+  if (index < 0 || index >= chapters.length) return;
+
+  currentChapter = index;
+
+  const chapter = chapters[index];
+
+  document.getElementById("reading-content").innerHTML = `
+    <div class="reader-header">
+      <p class="muted">${escapeHTML(currentBook.title)}</p>
+      <h2>${escapeHTML(chapter.title)}</h2>
+    </div>
+
+    <article class="reader">
+      <div class="reader-content" id="reader-text">${escapeHTML(chapter.content)}</div>
+    </article>
+
+    <div class="reader-controls">
+
+      <button
+        class="btn"
+        onclick="readChapter(${index - 1})"
+        ${index === 0 ? "disabled" : ""}
+      >← Chương trước</button>
+
+      <button class="btn" onclick="changeFont(-1)">A−</button>
+      <button class="btn" onclick="changeFont(1)">A+</button>
+
+      <button
+        class="btn"
+        onclick="readChapter(${index + 1})"
+        ${index === chapters.length - 1 ? "disabled" : ""}
+      >Chương sau →</button>
+
+    </div>
+  `;
+
+  showPage("reading");
+}
+
+function changeFont(amount) {
+  const reader = document.getElementById("reader-text");
+  if (!reader) return;
+
+  const currentSize = parseFloat(getComputedStyle(reader).fontSize);
+  const newSize = Math.max(14, Math.min(32, currentSize + amount * 2));
+
+  reader.style.fontSize = newSize + "px";
+}
+
+/* ==================================
+   THÊM TRUYỆN VÀ CHƯƠNG ĐẦU
+================================== */
+
+document.getElementById("book-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = new FormData(this);
+
+  const newBook = {
+    id: "user-" + Date.now(),
+    title: String(form.get("title")).trim(),
+    author: String(form.get("author")).trim(),
+    genre: String(form.get("genre")),
+    color: "gray",
+    description: String(form.get("description")).trim(),
+    chapters: [
+      {
+        title: String(form.get("chapter")).trim(),
+        content: String(form.get("content")).trim()
+      }
+    ]
+  };
+
+  if (!newBook.title || !newBook.author ||
+      !newBook.description || !newBook.chapters[0].content) {
+    alert("Bạn hãy điền đầy đủ thông tin.");
+    return;
+  }
+
+  books.push(newBook);
+
+  if (!saveData()) {
+    books.pop();
+    return;
+  }
+
+  this.reset();
+  category = "Tất cả";
+
+  renderBooks();
+  showPage("home");
+
+  alert("Đã lưu truyện trên thiết bị này!");
+});
+
+/* ==================================
+   KHỞI ĐỘNG
+================================== */
+
+renderBooks();
+updateFavoriteCount();
+</script>
+
+</body>
+  </html>
